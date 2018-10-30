@@ -29,7 +29,7 @@ public class BookFr {
     private Author author;
     private Publisher publisher;
 
-    public BookFr(long id,String name, int pageCount, String isbn, int publishYear, String descr, byte[] image, Genre genre, Author author, Publisher publisher) {
+    public BookFr(long id, String name, int pageCount, String isbn, int publishYear, String descr, byte[] image, Genre genre, Author author, Publisher publisher) {
         this.id = id;
         this.name = name;
         this.pageCount = pageCount;

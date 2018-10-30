@@ -23,7 +23,7 @@ public class PdfContent extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
-        try (OutputStream out = response.getOutputStream()){
+        try (OutputStream out = response.getOutputStream()) {
 
             SearchController searchController = (SearchController) request.getSession(false).getAttribute("searchController");
 

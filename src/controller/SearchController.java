@@ -1,14 +1,12 @@
 package controller;
 
 import beens.BookFr;
-import entity.Book;
 import lombok.Data;
 import service.ServiceDB;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,7 +42,7 @@ public class SearchController implements Serializable {
     private String currentSqlWithoutLimit;
     private int fillChoice = 0;
 
-   private ServiceDB serviceDB = new ServiceDB();
+    private ServiceDB serviceDB = new ServiceDB();
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("lib");
     private EntityManager em = emf.createEntityManager();
@@ -54,30 +52,27 @@ public class SearchController implements Serializable {
     }
 
 
-
-   /*public String*/ private void fillBooks() {
-       switch (fillChoice) {
-           case 1:
-               fillBooksByGenre(selectedGenreId);
-               //selectedPageNumber = 1;
-               break;
-           case 2:
-               fillBooksByLetter();
-               //selectedPageNumber = 1;
-               break;
-           case 3:
-               fillBookBySearch();
-               //selectedPageNumber = 1;
-               break;
-       }
-       //return "index";
-   }
+    private void fillBooks() {
+        switch (fillChoice) {
+            case 1:
+                fillBooksByGenre(selectedGenreId);
+                //selectedPageNumber = 1;
+                break;
+            case 2:
+                fillBooksByLetter();
+                //selectedPageNumber = 1;
+                break;
+            case 3:
+                fillBookBySearch();
+                //selectedPageNumber = 1;
+                break;
+        }
+    }
 
     private void fillPageNumbers(long totalBooksCount, int booksOnPage) {
-
         int pageCount = totalBooksCount / booksOnPage != 0 ? (int) (totalBooksCount / booksOnPage + 1) : (int) (totalBooksCount / booksOnPage);
         pageNumbers.clear();
-        for (int i = 1; i <= pageCount ; i++) {
+        for (int i = 1; i <= pageCount; i++) {
             pageNumbers.add(i);
         }
     }
@@ -85,15 +80,12 @@ public class SearchController implements Serializable {
     public void fillBooksByGenre(Long id) {
 
         selectedGenreId = id;
-       // selectedPageNumber = 1;
+        // selectedPageNumber = 1;
         currentBookList = serviceDB.findBooksByGenreId(id, selectedPageNumber, booksOnPage);
         totalBooksCount = serviceDB.countBooksByGenreId(selectedGenreId);
         fillPageNumbers(totalBooksCount, booksOnPage);
         selectedLetter = 'j';
         searchString = "";
-
-        //logger.info(String.valueOf(currentBookList.get(0)));
-
         fillChoice = 1;
         //fillBooks();
         //return "index";
@@ -162,74 +154,11 @@ public class SearchController implements Serializable {
         booksOnPage = Integer.valueOf(event.getNewValue().toString());
         selectedPageNumber = 1;
         fillBooks();
-       // fillBooksBySQL(currentSqlWithoutLimit);
+        // fillBooksBySQL(currentSqlWithoutLimit);
     }
 
     public void switchEditMode() {
         editMode = !editMode;
     }
 
-    /*public SearchType getSearchType() {
-        return searchType;
-    }
-
-    public void setSearchType(SearchType searchType) {
-        this.searchType = searchType;
-    }
-
-    public ArrayList<Integer> getPageNumbers() {
-        return pageNumbers;
-    }
-
-    public Long getSelectedGenreId() {
-        return selectedGenreId;
-    }
-
-    public long getSelectedPageNumber() {
-        return selectedPageNumber;
-    }
-
-    public int getBooksOnPage() {
-        return booksOnPage;
-    }
-
-    public void setBooksOnPage(int booksOnPage) {
-        this.booksOnPage = booksOnPage;
-    }
-
-    public char getSelectedLetter() {
-        return selectedLetter;
-    }
-
-    public Character[] getRussianLetters() {
-        return russianLetters;
-    }
-
-    public String getSearchString() {
-        return searchString;
-    }
-
-    public void setSearchString(String searchString) {
-        this.searchString = searchString;
-    }
-
-    public void setSelectedGenreId(Long selectedGenreId) {
-        this.selectedGenreId = selectedGenreId;
-    }
-
-    public boolean isEditMode() {
-        return editMode;
-    }
-
-    public byte[] getImage(Long id) {
-        return serviceDB.getBookImage(id);
-    }
-
-    public List<Book> getCurrentBookList() {
-        return currentBookList;
-    }
-
-    public long getTotalBooksCount() {
-        return totalBooksCount;
-    }*/
 }

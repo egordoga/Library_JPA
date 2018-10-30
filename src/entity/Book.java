@@ -69,21 +69,4 @@ public class Book {
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
-
-   /* @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", pageCount=" + pageCount +
-                ", isbn='" + isbn + '\'' +
-                ", publishYear=" + publishYear +
-                ", descr='" + descr + '\'' +
-                ", content=" + Arrays.toString(content) +
-                ", image=" + Arrays.toString(image) +
-                ", genre=" + genre +
-                ", author=" + author +
-                ", publisher=" + publisher +
-                '}';
-    }*/
 }

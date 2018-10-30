@@ -10,8 +10,8 @@ import java.util.List;
 
 public class GenreDao implements IGenreDao {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("lib");
-    EntityManager em = emf.createEntityManager();
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("lib");
+    private EntityManager em = emf.createEntityManager();
 
     @Override
     public List<Genre> findAll() {

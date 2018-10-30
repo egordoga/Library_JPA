@@ -1,7 +1,6 @@
 package service;
 
 import beens.BookFr;
-import entity.Book;
 import entity.Genre;
 import entity.User;
 
@@ -21,11 +20,15 @@ public interface IServiceDB {
     List<Genre> findAllGenre();
 
     byte[] getBookImage(Long id);
+
     byte[] getBookContent(Long id);
 
     Long countBooksByLetter(char letter);
+
     Long countBooksByGenreId(Long gid);
+
     Long countBooksBySubstringName(String substr);
+
     Long countBooksBySubstringAuthor(String substr);
 
     User findUserByName(String name);

@@ -4,7 +4,6 @@ import beens.BookFr;
 import dao.BookDao;
 import dao.GenreDao;
 import dao.UserDao;
-import entity.Book;
 import entity.Genre;
 import entity.User;
 import lombok.Data;

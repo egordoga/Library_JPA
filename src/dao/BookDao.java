@@ -21,8 +21,8 @@ public class BookDao implements IBookDao {
     @Override
     public List<BookFr> findAll(int pageNumber, int pageSize) {
 
-        Query query = em.createQuery("select b.author, b.name, b.isbn, b.genre, b.pageCount, b.publishYear," +
-                " b.publisher, b.descr, b.image from Book b");
+        Query query = em.createQuery("select new beens.BookFr(b.id, b.name, b.pageCount, b.isbn, b.publishYear, b.descr, " +
+                "b.image, b.genre, b.author, b.publisher) from Book b");
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
         return (List<BookFr>) query.getResultList();
@@ -37,7 +37,6 @@ public class BookDao implements IBookDao {
         query.setMaxResults(pageSize);
         return (List<BookFr>) query.getResultList();
     }
-
 
 
     @Override
@@ -76,12 +75,6 @@ public class BookDao implements IBookDao {
     public BookFr findById(Long id) {
         Query query = em.createQuery("select new beens.BookFr(b.id, b.name, b.pageCount, b.isbn, b.publishYear, b.descr, " +
                 "b.image, b.genre, b.author, b.publisher) from Book b where b.id=:bid", BookFr.class);
-
-       /* TypedQuery<BookFr> query = em.createQuery("select b.author, b.name, b.isbn, b.genre, b.pageCount, b.publishYear," +
-                " b.publisher, b.descr, b.image from Book b where b.id=:bid", BookFr.class);*/
-
-        // Query query = em.createQuery("select b from Book b where b.id=:bid", Book.class);
-
         query.setParameter("bid", id);
         return (BookFr) query.getSingleResult();
     }

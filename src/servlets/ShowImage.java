@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@WebServlet(name="/ShowImage", urlPatterns = "/")
+@WebServlet(name = "/ShowImage", urlPatterns = "/")
 public class ShowImage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
@@ -20,6 +20,7 @@ public class ShowImage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
+
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("image/jpeg");

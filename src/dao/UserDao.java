@@ -9,7 +9,6 @@ public class UserDao implements IUserDao {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("lib");
     private EntityManager em = emf.createEntityManager();
 
-
     @Override
     public User findByName(String name) {
         TypedQuery<User> query = null;
